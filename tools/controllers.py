@@ -76,15 +76,15 @@ def send_email(sender_email, receiver_email, subject, code):
     """
     # Add body to the email
     email_message.attach(MIMEText(html_content, "html"))
-   
+
     # Connect to the SMTP server and send the email
     with smtplib.SMTP(smtp_server, smtp_port) as server:
         server.starttls()
         server.login(smtp_username, smtp_password)
         server.send_message(email_message)
-        with open("data/code.json", "w") as file:
+        with open("tools/data/code.json", "w") as file:
             json.dump({"code": code}, file)
 def check_code():
-    with open("data/code.json", "r") as file:
+    with open("tools/data/code.json", "r") as file:
         data = json.load(file)
     return data["code"]

@@ -15,7 +15,7 @@ def hello():
         send_code = generate_verification_code()
         send_email(sender_email, receiver_email, subject, code=send_code)
         
-        return redirect('http://192.168.8.222:808/app/html/code.html', code=302)
+        return redirect('http://localhost/app/html/code.html', code=302)
 @app.route('/check', methods=['GET', 'POST'])
 def check():
     if request.method == 'POST':
@@ -23,9 +23,9 @@ def check():
     elif request.method == 'GET':
         stored_code = check_code()
         if stored_code == request.args.get('code'):
-            return redirect('http://192.168.8.222:808/app/html/homepage.html', code=302)
+            return redirect('http://localhost/app/html/homepage.html', code=302)
         else :
-            return redirect('http://192.168.8.222:808/app/html/code.html', code=302)
+            return redirect('http://localhost/app/html/code.html', code=302)
 
 
 if __name__ == '__main__':
